@@ -12,7 +12,9 @@ export const mediaTypes = [
 ];
 
 export function detect(source) {
-  return !!source.match(/"?swagger"?:\s*["']2\.0["']/g);
+  return !!(_.isString(source)
+    ? source.match(/"?swagger"?:\s*["']2\.0["']/g)
+    : source.swagger === '2.0');
 }
 
 function convertParameterToElement(minim, parameter) {
@@ -106,7 +108,7 @@ export function parse({minim, source}, done) {
 
   const loaded = _.isString(source) ? yaml.safeLoad(source) : source;
 
-  $RefParser.dereference(loaded, function(err, swagger) {
+  $RefParser.dereference(loaded, (err, swagger) => {
     if (err) {
       return done(err);
     }
@@ -118,9 +120,33 @@ export function parse({minim, source}, done) {
 
     // Root API Element
     api.classes.push('api');
-    api.meta.set('title', swagger.info.title);
-    if (swagger.info.description) {
-      api.content.push(new Copy(swagger.info.description));
+
+    if (swagger.info) {
+      if (swagger.info.title) {
+        api.meta.set('title', swagger.info.title);
+      }
+
+      if (swagger.info.description) {
+        api.content.push(new Copy(swagger.info.description));
+      }
+    }
+
+    if (swagger.host) {
+      let hostname = swagger.host;
+
+      if (swagger.schemes) {
+        if (swagger.schemes.length > 1) {
+          // TODO: Add warning about unused schemes!
+        }
+
+        hostname = `${swagger.schemes[0]}://${hostname}`;
+      }
+
+      api.attributes.set('meta', {});
+      const meta = api.attributes.get('meta');
+      const member = new MemberElement('HOST', hostname);
+      member.meta.set('classes', ['user']);
+      meta.content.push(member);
     }
 
     // Swagger has a paths object to loop through
@@ -219,12 +245,40 @@ export function parse({minim, source}, done) {
               response.content.push(new Copy(responseValue.description));
             }
 
-            if (contentType) {
-              const headers = new HttpHeaders();
+            const headers = new HttpHeaders();
 
+            if (contentType) {
               headers.push(new MemberElement(
                 'Content-Type', contentType
               ));
+
+              response.headers = headers;
+            }
+
+            if (responseValue.headers) {
+              for (const headerName in responseValue.headers) {
+                if (responseValue.headers.hasOwnProperty(headerName)) {
+                  const header = responseValue.headers[headerName];
+                  let value = '';
+
+                  // Choose the first available option
+                  if (header.enum) {
+                    value = header.enum[0];
+                  }
+
+                  if (header.default) {
+                    value = header.default;
+                  }
+
+                  const member = new MemberElement(headerName, value);
+
+                  if (header.description) {
+                    member.meta.set('description', header.description);
+                  }
+
+                  headers.push(member);
+                }
+              }
 
               response.headers = headers;
             }
