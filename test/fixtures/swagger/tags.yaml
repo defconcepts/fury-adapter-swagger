@@ -1,4 +1,7 @@
 swagger: '2.0'
+info:
+  name: Tags
+  version: '1.0'
 tags:
   - name: Group1
     description: Group1 description

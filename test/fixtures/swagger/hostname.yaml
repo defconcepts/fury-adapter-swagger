@@ -1,4 +1,7 @@
 swagger: '2.0'
+info:
+  title: hostname
+  version: '1.0'
 host: api.example.com
 basePath: /v1
 schemes:

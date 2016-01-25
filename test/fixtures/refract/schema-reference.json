@@ -7,7 +7,7 @@
       "element": "annotation",
       "meta": {
         "classes": [
-          "warning"
+          "error"
         ],
         "links": [
           {
@@ -22,15 +22,28 @@
         ]
       },
       "attributes": {
-        "code": 4
+        "code": 4,
+        "sourceMap": [
+          {
+            "element": "sourceMap",
+            "meta": {},
+            "attributes": {},
+            "content": [
+              [
+                159,
+                62
+              ]
+            ]
+          }
+        ]
       },
-      "content": "Missing required property: title"
+      "content": "Data does not match any schemas from 'oneOf'"
     },
     {
       "element": "annotation",
       "meta": {
         "classes": [
-          "warning"
+          "error"
         ],
         "links": [
           {
@@ -45,72 +58,58 @@
         ]
       },
       "attributes": {
-        "code": 4
-      },
-      "content": "Missing required property: version"
-    },
-    {
-      "element": "category",
-      "meta": {
-        "classes": [
-          "api"
+        "code": 4,
+        "sourceMap": [
+          {
+            "element": "sourceMap",
+            "meta": {},
+            "attributes": {},
+            "content": [
+              [
+                159,
+                62
+              ]
+            ]
+          }
         ]
       },
-      "attributes": {},
-      "content": [
-        {
-          "element": "resource",
-          "meta": {},
-          "attributes": {
-            "href": "/test"
-          },
-          "content": [
-            {
-              "element": "transition",
-              "meta": {},
-              "attributes": {},
-              "content": [
-                {
-                  "element": "httpTransaction",
-                  "meta": {},
-                  "attributes": {},
-                  "content": [
-                    {
-                      "element": "httpRequest",
-                      "meta": {},
-                      "attributes": {
-                        "method": "GET"
-                      },
-                      "content": []
-                    },
-                    {
-                      "element": "httpResponse",
-                      "meta": {},
-                      "attributes": {
-                        "statusCode": "200"
-                      },
-                      "content": [
-                        {
-                          "element": "asset",
-                          "meta": {
-                            "classes": [
-                              "messageBodySchema"
-                            ]
-                          },
-                          "attributes": {
-                            "contentType": "application/schema+json"
-                          },
-                          "content": "{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"name\":{\"type\":\"string\"}}}"
-                        }
-                      ]
-                    }
-                  ]
-                }
+      "content": "Missing required property: description"
+    },
+    {
+      "element": "annotation",
+      "meta": {
+        "classes": [
+          "error"
+        ],
+        "links": [
+          {
+            "element": "link",
+            "meta": {},
+            "attributes": {
+              "relation": "origin",
+              "href": "http://docs.apiary.io/validations/swagger#swagger-validation"
+            },
+            "content": []
+          }
+        ]
+      },
+      "attributes": {
+        "code": 4,
+        "sourceMap": [
+          {
+            "element": "sourceMap",
+            "meta": {},
+            "attributes": {},
+            "content": [
+              [
+                159,
+                62
               ]
-            }
-          ]
-        }
-      ]
+            ]
+          }
+        ]
+      },
+      "content": "Missing required property: $ref"
     }
   ]
 }

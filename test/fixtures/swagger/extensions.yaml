@@ -1,4 +1,7 @@
 swagger: '2.0'
+info:
+  title: Extensions
+  version: '1.0'
 x-ignored: true
 paths:
   x-ignored: true

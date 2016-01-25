@@ -7,7 +7,7 @@
       "element": "annotation",
       "meta": {
         "classes": [
-          "warning"
+          "error"
         ],
         "links": [
           {
@@ -22,93 +22,22 @@
         ]
       },
       "attributes": {
-        "code": 4
-      },
-      "content": "Missing required property: title"
-    },
-    {
-      "element": "annotation",
-      "meta": {
-        "classes": [
-          "warning"
-        ],
-        "links": [
+        "code": 4,
+        "sourceMap": [
           {
-            "element": "link",
+            "element": "sourceMap",
             "meta": {},
-            "attributes": {
-              "relation": "origin",
-              "href": "http://docs.apiary.io/validations/swagger#swagger-validation"
-            },
-            "content": []
-          }
-        ]
-      },
-      "attributes": {
-        "code": 4
-      },
-      "content": "Missing required property: version"
-    },
-    {
-      "element": "category",
-      "meta": {
-        "classes": [
-          "api"
-        ]
-      },
-      "attributes": {},
-      "content": [
-        {
-          "element": "resource",
-          "meta": {},
-          "attributes": {
-            "href": "/test"
-          },
-          "content": [
-            {
-              "element": "transition",
-              "meta": {},
-              "attributes": {},
-              "content": [
-                {
-                  "element": "httpTransaction",
-                  "meta": {},
-                  "attributes": {},
-                  "content": [
-                    {
-                      "element": "httpRequest",
-                      "meta": {},
-                      "attributes": {
-                        "method": "POST"
-                      },
-                      "content": [
-                        {
-                          "element": "asset",
-                          "meta": {
-                            "classes": [
-                              "messageBodySchema"
-                            ]
-                          },
-                          "attributes": {
-                            "contentType": "application/schema+json"
-                          },
-                          "content": "{\"type\":\"string\"}"
-                        }
-                      ]
-                    },
-                    {
-                      "element": "httpResponse",
-                      "meta": {},
-                      "attributes": {},
-                      "content": []
-                    }
-                  ]
-                }
+            "attributes": {},
+            "content": [
+              [
+                97,
+                170
               ]
-            }
-          ]
-        }
-      ]
+            ]
+          }
+        ]
+      },
+      "content": "Missing required property: responses"
     }
   ]
 }
